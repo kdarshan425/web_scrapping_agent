@@ -1,0 +1,37 @@
+# One command starts everything:  docker compose up -d --build
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pagechat
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d pagechat"]
+      interval: 5s
+      retries: 10
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports: ["6333:6333"]
+    volumes: [qdrantdata:/qdrant/storage]
+
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:               # these override the localhost values from .env
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/pagechat
+      QDRANT_URL: http://qdrant:6333
+    ports: ["8000:8000"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      qdrant: { condition: service_started }
+    volumes:
+      - ./backend/policies:/app/policies   # drop policy files here, then run the ingest script
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  qdrantdata:

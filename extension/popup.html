@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Page Chat Assistant</title>
+  <link rel="stylesheet" href="css/popup.css" />
+</head>
+<body>
+  <header>
+    <div class="titles">
+      <strong>Page Chat</strong>
+      <span id="page-title" class="muted">Reading page…</span>
+    </div>
+    <div class="actions">
+      <button id="btn-new" title="Start a new chat">＋</button>
+      <button id="btn-settings" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <!-- Settings panel (hidden until ⚙ is clicked) -->
+  <section id="settings" hidden>
+    <label>Backend URL <input id="in-url" placeholder="http://localhost:8000" /></label>
+    <label>API key <input id="in-key" type="password" placeholder="X-API-Key from your .env" /></label>
+    <button id="btn-save">Save</button>
+  </section>
+
+  <main id="messages"></main>
+
+  <footer>
+    <textarea id="in-question" rows="2" placeholder="Ask about this page… (Enter to send)"></textarea>
+    <button id="btn-send">Send</button>
+  </footer>
+
+  <script type="module" src="js/popup.js"></script>
+</body>
+</html>

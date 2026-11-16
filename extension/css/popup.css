@@ -1,0 +1,28 @@
+* { box-sizing: border-box; }
+body { width: 400px; height: 560px; margin: 0; display: flex; flex-direction: column;
+       font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color: #1f2937; background: #fff; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px;
+         background: #2563eb; color: #fff; }
+.titles { display: flex; flex-direction: column; min-width: 0; }
+#page-title { font-size: 11px; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 290px; }
+.actions button { background: transparent; border: 0; color: #fff; font-size: 18px; cursor: pointer; }
+#settings { padding: 10px 12px; background: #f3f4f6; display: flex; flex-direction: column; gap: 8px; }
+#settings[hidden] { display: none; }
+#settings input { width: 100%; padding: 6px; border: 1px solid #d1d5db; border-radius: 6px; }
+#messages { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 92%; padding: 8px 10px; border-radius: 10px; word-wrap: break-word; }
+.msg.user { align-self: flex-end; background: #dbeafe; }
+.msg.assistant { align-self: flex-start; background: #f3f4f6; }
+.msg.error { align-self: flex-start; background: #fee2e2; color: #991b1b; }
+.msg p { margin: 0 0 6px; } .msg p:last-child { margin: 0; }
+.msg code { background: #e5e7eb; padding: 1px 4px; border-radius: 4px; }
+.meta { margin-top: 6px; font-size: 10.5px; color: #6b7280; }
+.meta .flag { color: #b45309; }
+details.sources { margin-top: 4px; font-size: 11px; }
+details.sources div { margin: 3px 0; padding-left: 6px; border-left: 2px solid #93c5fd; }
+.muted { color: #9ca3af; }
+footer { display: flex; gap: 8px; padding: 10px; border-top: 1px solid #e5e7eb; }
+textarea { flex: 1; resize: none; padding: 6px; border: 1px solid #d1d5db; border-radius: 6px; font: inherit; }
+footer button, #btn-save { background: #2563eb; color: #fff; border: 0; border-radius: 6px; padding: 0 14px; cursor: pointer; }
+#btn-save { padding: 7px; }
+button:disabled { opacity: .5; cursor: wait; }
